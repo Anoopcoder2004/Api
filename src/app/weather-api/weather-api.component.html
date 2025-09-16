@@ -1,0 +1,9 @@
+<p>weather-api works!</p>
+<input type="text" [(ngModel)]="city" placeholder="Enter city" />
+<button (click)="fetchWeather()">Get Weather</button>
+
+<div *ngIf="weatherData">
+  <h2>{{ weatherData.name }}</h2>
+  <p>Temperature: {{ weatherData.main.temp }} °C</p>
+  <p>Weather: {{ weatherData.weather[0].description }}</p>
+</div>
