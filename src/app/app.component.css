@@ -1,0 +1,21 @@
+
+body, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* app.component.css or global styles.css */
+.container {
+  display: flex;
+  height: 100vh; /* full screen height */
+}
+
+.sidebar {
+  width: 250px; /* fixed sidebar width */
+  background-color: #f5f5f5;
+}
+
+.main-content {
+  flex: 1; /* take remaining space */
+  overflow-y: auto;
+}
