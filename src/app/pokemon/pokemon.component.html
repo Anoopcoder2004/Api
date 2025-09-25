@@ -1,0 +1,18 @@
+<div class="container mx-auto mt-4">
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let pokemon of pokemonList">
+      <div class="card" style="width: 18rem;">
+        <!-- Correctly bind image -->
+        <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" class="card-img-top">
+
+        <div class="card-body">
+          <h5 class="card-title">{{ pokemon.name | uppercase }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">ID: {{ pokemon.id }}</h6>
+          <p class="card-text">
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ 
