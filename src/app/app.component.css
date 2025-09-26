@@ -19,3 +19,6 @@ body, html {
   flex: 1; /* take remaining space */
   overflow-y: auto;
 }
+.container{
+  padding:0;
+}
