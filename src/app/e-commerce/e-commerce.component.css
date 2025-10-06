@@ -1,0 +1,8 @@
+.card-img-top {
+  display: block;
+  margin: 0 auto;           /* centers the image horizontally */
+  width: 200px;             /* fixed width */
+  height: 200px;            /* fixed height */
+  object-fit: contain;      /* keep the image’s aspect ratio without distortion */
+  padding: 10px;            /* optional – gives some spacing inside the card */
+}
