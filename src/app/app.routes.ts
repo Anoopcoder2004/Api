@@ -6,6 +6,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ECommerceComponent } from './e-commerce/e-commerce.component';
 import { StepperComponent } from './stepper/stepper.component';
 import { ProductDetailsComponent } from './product-details/product-details.component'; 
+import { ProductInfoComponent } from './product-details/product-info/product-info.component';
 
 export const routes: Routes = [
   { path: 'weather', component: WeatherApiComponent },
@@ -14,5 +15,6 @@ export const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'e-commerce', component: ECommerceComponent },
   { path: 'stepper', component: StepperComponent },
-  { path: 'product-details', component: ProductDetailsComponent }
+  { path: 'product-details', component: ProductDetailsComponent },
+  { path: 'product-info/:id', component: ProductInfoComponent }
 ];

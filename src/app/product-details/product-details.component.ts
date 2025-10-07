@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-
+import { Router, RouterModule } from '@angular/router';
 @Component({
   selector: 'app-product-details',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,RouterModule],
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.css']
 })
@@ -14,9 +14,13 @@ export class ProductDetailsComponent {
   currentPage: number = 1;
   itemsPerPage: number = 5; // default
   totalPages: number = 1;
-  itemsOptions: number[] = [5, 10, 20, 50]; // dropdown options
+  itemsOptions: number[] = [5, 10, 20, 50]; 
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private router:Router
+
+  ) {
     this.getTableData();
   }
 
@@ -51,4 +55,7 @@ export class ProductDetailsComponent {
     this.currentPage = 1; // reset to first page
     this.updateTotalPages();
   }
+  onProductClick(productId:number){
+    this.router.navigate(['/product-info',productId]);
+}
 }
