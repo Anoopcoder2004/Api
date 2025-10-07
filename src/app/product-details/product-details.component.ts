@@ -12,9 +12,9 @@ import { Router, RouterModule } from '@angular/router';
 export class ProductDetailsComponent {
   tableData: any[] = [];
   currentPage: number = 1;
-  itemsPerPage: number = 5; // default
+  itemsPerPage: number = 10; // default
   totalPages: number = 1;
-  itemsOptions: number[] = [5, 10, 20, 50]; 
+  itemsOptions: number[] = [10, 20, 50]; 
 
   constructor(
     private http: HttpClient,
