@@ -1,0 +1,97 @@
+/* Stepper wrapper */
+.stepper-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 10px;
+}
+
+/* Stepper layout */
+.stepper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+  max-width: 700px;
+  position: relative;
+}
+
+/* Step */
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* Step circle */
+.circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #cceee6;
+  color: #017f68;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  position: relative;
+}
+
+/* Step label */
+.label {
+  margin-top: 8px;
+  font-size: 14px;
+  text-align: center;
+  color: #333;
+  width: 100px;
+}
+
+/* Connector line */
+.connector {
+  flex: 1;
+  height: 3px;
+  background-color: rgba(1, 169, 130, 0.2);
+  position: relative;
+  top: -20px; /* vertically aligns with circle center */
+  z-index: 1;
+}
+
+/* Active step */
+.step.active .circle {
+  background-color: #00b48a;
+  color: white;
+  transform: scale(1.1);
+}
+
+/* Completed step */
+.step.completed .circle {
+  background-color: #00b48a;
+  color: white;
+}
+
+/* Completed line */
+.step.completed + .connector {
+  background: linear-gradient(90deg, #00b48a 0%, rgba(1, 169, 130, 0.2) 100%);
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .stepper {
+    width: 100%;
+  }
+  .circle {
+    width: 32px;
+    height: 32px;
+    font-size: 13px;
+  }
+  .label {
+    font-size: 12px;
+    width: 80px;
+  }
+  .connector {
+    top: -16px;
+  }
+}
