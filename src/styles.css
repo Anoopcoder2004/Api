@@ -2,3 +2,101 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* ==============================
+   Green-White Theme – Global Classes
+   ============================== */
+
+/* ----- Table Styles ----- */
+.green-table {
+    background-color: #ffffff; /* Table background */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    width: 100%;
+    border-collapse: separate; /* Needed for rounded corners */
+    border-spacing: 0;
+}
+
+.green-table thead {
+    background-color: #00b48a; /* Primary teal-green */
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.green-table tbody tr:hover {
+    background-color: #b2ede2; /* Lighter teal-green hover */
+}
+
+/* Table Cells */
+.green-table th,
+.green-table td {
+    padding: 12px 15px;
+    vertical-align: middle;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color:#212b361a; /* default light gray stripe */
+}
+
+
+
+/* ----- Badges ----- */
+.badge-green-status {
+    background-color: #00b48a; /* Primary teal-green */
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.badge-green-priority {
+    background-color: #009973; /* Darker teal-green for priority */
+    color: #ffffff;
+    font-weight: 500;
+}
+
+/* ----- Headings & Text ----- */
+.text-green {
+    color: #00b48a;
+}
+
+.text-dark-green {
+    color: #009973;
+}
+
+/* ----- Borders ----- */
+.border-green {
+    border: 2px solid #00b48a;
+    border-radius: 8px;
+}
+
+/* ----- Hover Effects ----- */
+.hover-light-green:hover {
+    background-color: #b2ede2; /* Lighter teal-green hover */
+}
+
+/* ----- Cards / Containers ----- */
+.card-green {
+    background-color: #ffffff;
+    border: 2px solid #00b48a;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 15px;
+}
+
+/* ----- Buttons ----- */
+.btn-green {
+    background-color: #00b48a;
+    color: #ffffff;
+    font-weight: 500;
+    border: none;
+}
+
+.btn-green:hover {
+    background-color: #009973; /* Darker teal-green on hover */
+    color: #ffffff;
+}
+
+/* ----- Responsive Table Wrapper ----- */
+.table-responsive-green {
+    overflow-x: auto;
+    border-radius: 10px;
+}

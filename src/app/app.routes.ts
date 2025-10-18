@@ -8,7 +8,10 @@ import { StepperComponent } from './stepper/stepper.component';
 import { ProductDetailsComponent } from './product-details/product-details.component'; 
 import { ProductInfoComponent } from './product-details/product-info/product-info.component';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
+import { ProjectDetailsComponent } from './project-details/project-details.component';
+
 export const routes: Routes = [
+
   { path: 'weather', component: WeatherApiComponent },
   { path: 'cat',component: CatComponent},
   { path: 'pokemon',component: PokemonComponent},
@@ -17,5 +20,7 @@ export const routes: Routes = [
   { path: 'stepper', component: StepperComponent },
   { path: 'product-details', component: ProductDetailsComponent },
   { path: 'product-info/:id', component: ProductInfoComponent },
-  { path: 'user-registration', component: UserRegistrationComponent } 
+  { path: 'user-registration', component: UserRegistrationComponent },
+  { path: 'project-details', component:ProjectDetailsComponent }
+
 ];
