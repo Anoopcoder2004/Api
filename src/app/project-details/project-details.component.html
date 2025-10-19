@@ -1,50 +1,132 @@
-
 <div class="container my-5">
-  <h2 class="text-green mb-4">Project Details</h2>
-  
-  <div class="table-responsive-green">
-    <table class="green-table table-striped">
-      <thead>
-        <tr>
-          <th>Project ID</th>
-          <th>Project Code</th>
-          <th>Project Name</th>
-          <th>Description</th>
-          <th>Start Date</th>
-          <th>End Date</th>
-          <th>Status</th>
-          <th>Priority</th>
-          <th>Client Name</th>
-          <th>Budget</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="hover-light-green">
-          <td>849205de-c1c8-456b-a33c-b743914c7376</td>
-          <td>YRESGDS</td>
-          <td>Website Redesign 2025</td>
-          <td>Complete redesign of company website to improve UX and SEO</td>
-          <td>2025-10-17</td>
-          <td>2025-10-31</td>
-          <td><span class="badge-green-status badge">In Progress</span></td>
-          <td><span class="badge-green-priority badge">High</span></td>
-          <td>ABC Corp</td>
-          <td>$15,000.00</td>
-        </tr>
-        <tr class="hover-light-green">
-          <td>92f105de-c1c8-1234-a33c-b743914c9999</td>
-          <td>PRJ2026</td>
-          <td>Mobile App Launch</td>
-          <td>Develop and launch a new mobile app for clients</td>
-          <td>2025-11-01</td>
-          <td>2025-12-15</td>
-          <td><span class="badge-green-status badge">Planned</span></td>
-          <td><span class="badge-green-priority badge">Medium</span></td>
-          <td>XYZ Solutions</td>
-          <td>$25,000.00</td>
-        </tr>
-        <!-- Add more rows as needed -->
-      </tbody>
-    </table>
-  </div>
+    <h2 class="text-green mb-4">Project Details</h2>
+
+
+    <button class="btn btn-green btn-sm" data-bs-toggle="modal" data-bs-target="#editProjectModal">
+        Edit
+    </button>
+    <!-- Edit Project Modal -->
+    <div class="modal fade" id="editProjectModal" tabindex="-1" aria-labelledby="editProjectLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content border-green">
+                <div class="modal-header bg-white">
+                    <h5 class="modal-title text-green fw-bold" id="editProjectLabel">Edit Project</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <form id="editProjectForm">
+                    <div class="modal-body">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label text-dark-green">Project Code</label>
+                                <input type="text" class="form-control border-green" id="editProjectCode" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label text-dark-green">Project Name</label>
+                                <input type="text" class="form-control border-green" id="editProjectName" required>
+                            </div>
+
+                            <div class="col-12">
+                                <label class="form-label text-dark-green">Description</label>
+                                <textarea class="form-control border-green" id="editDescription" rows="2"></textarea>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label text-dark-green">Start Date</label>
+                                <input type="date" class="form-control border-green" id="editStartDate">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label text-dark-green">End Date</label>
+                                <input type="date" class="form-control border-green" id="editEndDate">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label text-dark-green">Status</label>
+                                <select class="form-select border-green" id="editStatus">
+                                    <option value="PLANNED">Planned</option>
+                                    <option value="IN_PROGRESS">In Progress</option>
+                                    <option value="COMPLETED">Completed</option>
+                                    <option value="ON_HOLD">On Hold</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label text-dark-green">Priority</label>
+                                <select class="form-select border-green" id="editPriority">
+                                    <option value="LOW">Low</option>
+                                    <option value="MEDIUM">Medium</option>
+                                    <option value="HIGH">High</option>
+                                    <option value="CRITICAL">Critical</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label text-dark-green">Client Name</label>
+                                <input type="text" class="form-control border-green" id="editClientName">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label text-dark-green">Budget ($)</label>
+                                <input type="number" step="0.01" class="form-control border-green" id="editBudget">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer bg-white">
+                        <button type="button" class="btn btn-green" id="saveChangesBtn">Save Changes</button>
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="table-responsive-green">
+        <table class="green-table table-striped">
+            <thead>
+                <tr>
+                    <th>Project ID</th>
+                    <th>Project Code</th>
+                    <th>Project Name</th>
+                    <th>Description</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Status</th>
+                    <th>Priority</th>
+                    <th>Client Name</th>
+                    <th>Budget</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="hover-light-green">
+                    <td>849205de-c1c8-456b-a33c-b743914c7376</td>
+                    <td>YRESGDS</td>
+                    <td>Website Redesign 2025</td>
+                    <td>Complete redesign of company website to improve UX and SEO</td>
+                    <td>2025-10-17</td>
+                    <td>2025-10-31</td>
+                    <td><span class="badge-green-status badge">In Progress</span></td>
+                    <td><span class="badge-green-priority badge">High</span></td>
+                    <td>ABC Corp</td>
+                    <td>$15,000.00</td>
+                </tr>
+                <tr class="hover-light-green">
+                    <td>92f105de-c1c8-1234-a33c-b743914c9999</td>
+                    <td>PRJ2026</td>
+                    <td>Mobile App Launch</td>
+                    <td>Develop and launch a new mobile app for clients</td>
+                    <td>2025-11-01</td>
+                    <td>2025-12-15</td>
+                    <td><span class="badge-green-status badge">Planned</span></td>
+                    <td><span class="badge-green-priority badge">Medium</span></td>
+                    <td>XYZ Solutions</td>
+                    <td>$25,000.00</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+    </div>
 </div>
