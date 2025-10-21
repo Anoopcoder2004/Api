@@ -1,0 +1,23 @@
+    <div class="table-responsive-green">
+        <table class="green-table table-striped">
+            <thead>
+                <tr >
+                    <th>Phase Code</th>
+                    <th>Phase Name</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>                
+                <tr  class="hover-light-green" *ngFor = "let phase of phases"  >
+                    <td>{{phase.phaseCode}}</td>
+                    <td>{{phase.phaseName}}</td>
+                    <td>{{phase.startDate}}</td>
+                    <td>{{phase.endDate}}</td>
+                    <td>{{phase.phaseStatus}}</td>
+      
+                </tr>
+            </tbody>
+        </table>
+    </div>

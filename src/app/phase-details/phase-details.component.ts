@@ -1,24 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { ProjectService,Project } from '../services/project.service';
+import { ProjectService,Phase } from '../services/project.service';
 import { AppComponent } from '../app.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-project-details',
+  selector: 'app-phase-details',
   standalone: true,
   imports: [AppComponent,CommonModule,RouterModule],
-  templateUrl: './project-details.component.html',
-  styleUrl: './project-details.component.scss'
+  templateUrl: './phase-details.component.html',
+  styleUrl: './phase-details.component.scss'
 })
-export class ProjectDetailsComponent implements OnInit {
-projects:Project[]=[];
+export class PhaseDetailsComponent implements OnInit {
+phases:Phase[]=[];
 
   constructor(private projectService: ProjectService) {}
 
   ngOnInit() {
-    this.projectService.getProjects().subscribe({
-      next: (data) => this.projects = data,
+    this.projectService.getPhases().subscribe({
+      next: (data) => this.phases = data,
       error: (err) => console.error('Error fetching projects', err)
     });
   }

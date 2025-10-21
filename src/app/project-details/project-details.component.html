@@ -97,8 +97,8 @@
                     <th>Budget</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr *ngFor="let project of projects" class="hover-light-green">
+            <tbody>                
+                <tr *ngFor="let project of projects" class="hover-light-green" [routerLink]="['/phase-details']" >
                     <td>{{ project.projectCode }}</td>
                     <td>{{ project.projectName }}</td>
                     <td>{{ project.startDate }}</td>

@@ -9,6 +9,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { ProductInfoComponent } from './product-details/product-info/product-info.component';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
 import { ProjectDetailsComponent } from './project-details/project-details.component';
+import { PhaseDetailsComponent } from './phase-details/phase-details.component';
 
 export const routes: Routes = [
 
@@ -21,6 +22,7 @@ export const routes: Routes = [
   { path: 'product-details', component: ProductDetailsComponent },
   { path: 'product-info/:id', component: ProductInfoComponent },
   { path: 'user-registration', component: UserRegistrationComponent },
-  { path: 'project-details', component:ProjectDetailsComponent }
+  { path: 'project-details', component:ProjectDetailsComponent },
+  { path : 'phase-details', component:PhaseDetailsComponent}
 
 ];
