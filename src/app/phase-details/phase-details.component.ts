@@ -28,7 +28,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 export class PhaseDetailsComponent {
   projectId!: string;
   phases: any[] = [];
-    loading = true;
   displayedColumns: string[] = [
     'phaseName',
     'phaseCode',
