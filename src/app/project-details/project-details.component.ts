@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ProjectService,Project } from '../services/project.service';
 import { AppComponent } from '../app.component';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router,RouterModule } from '@angular/router';
+
 
 @Component({
   selector: 'app-project-details',
@@ -14,7 +15,10 @@ import { RouterModule } from '@angular/router';
 export class ProjectDetailsComponent implements OnInit {
 projects:Project[]=[];
 
-  constructor(private projectService: ProjectService) {}
+  constructor(
+    private projectService: ProjectService,
+    private router:Router
+  ) {}
 
   ngOnInit() {
     this.projectService.getProjects().subscribe({
@@ -22,5 +26,8 @@ projects:Project[]=[];
       error: (err) => console.error('Error fetching projects', err)
     });
   }
+  goToPhases(projectId: string) {
+  this.router.navigate(['/projects', projectId, 'phases']);
+}
 
 }
