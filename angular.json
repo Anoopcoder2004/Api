@@ -37,8 +37,8 @@
               "src/styles.css"
             ],
             "scripts": [
-                "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
-
+              "src/polyfills-global.js",
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ]
           },
           "configurations": {
@@ -98,7 +98,9 @@
               "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ]
           }
         }
       }

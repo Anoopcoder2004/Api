@@ -10,6 +10,7 @@ import { ProductInfoComponent } from './product-details/product-info/product-inf
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
 import { ProjectDetailsComponent } from './project-details/project-details.component';
 import { PhaseDetailsComponent } from './phase-details/phase-details.component';
+import { WebsocketDemoComponent } from './websocket-demo/websocket-demo.component';
 
 export const routes: Routes = [
 
@@ -23,7 +24,8 @@ export const routes: Routes = [
   { path: 'product-info/:id', component: ProductInfoComponent },
   { path: 'user-registration', component: UserRegistrationComponent },
   { path: 'project-details', component:ProjectDetailsComponent },
-    { path: 'projects/:projectId/phases', component: PhaseDetailsComponent }
+  { path: 'projects/:projectId/phases', component: PhaseDetailsComponent },
+  { path:'websocket-demo',component:WebsocketDemoComponent }
 
 
 ];

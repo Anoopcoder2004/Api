@@ -1,0 +1,10 @@
+<div>
+  <h3>WebSocket Chat</h3>
+
+  <div *ngFor="let msg of messages" style="border: 1px solid #ccc; margin: 5px; padding: 5px;">
+    {{ msg }}
+  </div>
+
+  <input [(ngModel)]="message" placeholder="Type your message" />
+  <button (click)="send()">Send</button>
+</div>
