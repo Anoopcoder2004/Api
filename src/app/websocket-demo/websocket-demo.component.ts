@@ -12,7 +12,7 @@ import { WebsocketService } from '../services/websocket.service';
 })
 export class WebsocketDemoComponent {
   message: string = '';
-  messages: string[] = [];
+  messages: any[] = [];
 
 
   constructor(private wsService: WebsocketService) {}
