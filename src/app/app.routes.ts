@@ -11,7 +11,8 @@ import { UserRegistrationComponent } from './user-registration/user-registration
 import { ProjectDetailsComponent } from './project-details/project-details.component';
 import { PhaseDetailsComponent } from './phase-details/phase-details.component';
 import { WebsocketDemoComponent } from './websocket-demo/websocket-demo.component';
-
+import { LoginDemoComponent } from './login-demo/login-demo.component';
+import { SignupDemoComponent } from './signup-demo/signup-demo.component';
 export const routes: Routes = [
 
   { path: 'weather', component: WeatherApiComponent },
@@ -25,7 +26,9 @@ export const routes: Routes = [
   { path: 'user-registration', component: UserRegistrationComponent },
   { path: 'project-details', component:ProjectDetailsComponent },
   { path: 'projects/:projectId/phases', component: PhaseDetailsComponent },
-  { path:'websocket-demo',component:WebsocketDemoComponent }
+  { path:'websocket-demo',component:WebsocketDemoComponent },
+  { path:'login-demo',component:LoginDemoComponent },
+  { path:'signup-demo',component:SignupDemoComponent }
 
 
 ];
