@@ -1,21 +1,27 @@
 <div class="login-page">
-  <div class="login-card">
-    <h2><span>Welcome</span> Back</h2>
-    <p>Please sign in to continue</p>
+    <div class="login-card">
+        <h2><span>Welcome</span> Back</h2>
+        <p>Please sign in to continue</p>
 
-    <form>
-      <div class="input-group">
-        <input type="email" placeholder="Email" required />
-      </div>
-      <div class="input-group">
-        <input type="password" placeholder="Password" required />
-      </div>
-      <button type="submit" class="btn-login">Sign In</button>
-    </form>
+        <form (ngSubmit)="onSignup()">
+            <div class="input-group">
+                <input [(ngModel)]="username" name="username" placeholder="Username" required />
+            </div>
+            <div class="input-group">
+                <input [(ngModel)]="email" name="email" type="email" placeholder="Email" required />
+            </div>
+            <div class="input-group">
+                <input [(ngModel)]="password" name="password" type="password" placeholder="Password" required />
+            </div>
+            <button type="submit" class="btn-login">Sign Up</button>
+        </form>
 
-    <p class="signup-text">
-      forgot your password?
-      <button class="btn-signup" ></button>
-    </p>
-  </div>
+        <p *ngIf="error" class="error-text">{{ error }}</p>
+
+
+        <p class="signup-text">
+            forgot your password?
+            <button class="btn-signup"></button>
+        </p>
+    </div>
 </div>
