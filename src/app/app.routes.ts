@@ -14,6 +14,7 @@ import { WebsocketDemoComponent } from './websocket-demo/websocket-demo.componen
 import { LoginDemoComponent } from './login-demo/login-demo.component';
 import { SignupDemoComponent } from './signup-demo/signup-demo.component';
 import { HomeComponent } from './home/home.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 export const routes: Routes = [
 
@@ -31,7 +32,8 @@ export const routes: Routes = [
   { path:'websocket-demo',component:WebsocketDemoComponent },
   { path:'login-demo',component:LoginDemoComponent },
   { path:'signup-demo',component:SignupDemoComponent },
-  { path:'home',component:HomeComponent }
+  { path:'home',component:HomeComponent },
+  { path: 'forgot-password', component: ForgotPasswordComponent }
 
 
 ];

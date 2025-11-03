@@ -10,11 +10,15 @@
       <div class="input-group">
         <input [(ngModel)]="password" name="password" type="password" placeholder="Password" required />
       </div>
+
+      <div class="forgot-password">
+        <a routerLink="/forgot-password">Forgot Password?</a>
+      </div>
+
       <button type="submit" class="btn-login">Login</button>
     </form>
 
     <p *ngIf="error" class="error-text">{{ error }}</p>
-
 
     <p class="signup-text">
       Don’t have an account?
