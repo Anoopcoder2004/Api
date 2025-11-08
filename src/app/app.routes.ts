@@ -15,6 +15,7 @@ import { LoginDemoComponent } from './login-demo/login-demo.component';
 import { SignupDemoComponent } from './signup-demo/signup-demo.component';
 import { HomeComponent } from './home/home.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { TestComponent } from './test/test.component';  
 
 export const routes: Routes = [
 
@@ -33,7 +34,8 @@ export const routes: Routes = [
   { path:'login-demo',component:LoginDemoComponent },
   { path:'signup-demo',component:SignupDemoComponent },
   { path:'home',component:HomeComponent },
-  { path: 'forgot-password', component: ForgotPasswordComponent }
+  { path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: 'test', component: TestComponent },
 
 
 ];

@@ -1,0 +1,84 @@
+/* Wrapper */
+.floating-label {
+  position: relative;
+  display: inline-block;
+  width: 220px;
+}
+
+/* Input base style */
+.floating-label input {
+  width: 100%;
+  padding: 12px 10px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  background-color: #e0f4f1; /* soft greenish background */
+  color: #000;
+  transition: border-color 0.3s;
+}
+
+/* Focus effect */
+.floating-label input:focus {
+  border-color: #007bff;
+}
+
+/* Label positioning */
+.floating-label label {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  color: #777;
+  font-size: 16px;
+  background-color: #e0f4f1; /* same as input bg */
+  transition: 0.2s ease all;
+  pointer-events: none;
+}
+
+/* Floating label animation */
+.floating-label input:focus + .lab label,
+.floating-label input:not(:placeholder-shown) + .lab label {
+  top: -8px;
+  left: 10px;
+  font-size: 12px;
+  color: #007bff;
+  padding: 0 4px;
+}
+
+/* Spinner buttons container */
+.spinner {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2 px;
+}
+
+/* Spinner icons */
+.spinner i {
+  font-size: 14px;
+  color: #007bff;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.spinner i:hover {
+  color: #0056b3;
+}
+
+/* Remove native number spinners */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+.spinner i:first-child {
+  margin-bottom: -2px; /* overlap a bit */
+}
+
