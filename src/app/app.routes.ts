@@ -16,6 +16,7 @@ import { SignupDemoComponent } from './signup-demo/signup-demo.component';
 import { HomeComponent } from './home/home.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { TestComponent } from './test/test.component';  
+import { KonvaComponent } from './konva/konva.component';
 
 export const routes: Routes = [
 
@@ -36,6 +37,7 @@ export const routes: Routes = [
   { path:'home',component:HomeComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'test', component: TestComponent },
+  { path: 'konva',component:KonvaComponent}
 
 
 ];

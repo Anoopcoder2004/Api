@@ -1,45 +1,57 @@
 /* Floating label wrapper */
-.floating-label {
+.floating-label-custom {
   position: relative;
   display: inline-block;
+  background-color: #01A9821F; /* light green overlay */
+  border-radius: 6px;
 }
 
 /* Input base styling */
-.floating-label input {
-  width: 200px;
+.floating-label-custom input {
+  width: 400px;
   padding: 12px 8px;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 6px;
   background: transparent;
   outline: none;
-  color: #000;
+  color: transparent; /* hide default --:-- placeholder */
+}
+
+/* Show typed value on focus */
+.floating-label-custom input:focus {
+  color: #000; /* typed time visible */
 }
 
 /* Floating label */
-.floating-label label {
+.floating-label-custom label {
   position: absolute;
   top: 50%;
   left: 10px;
   transform: translateY(-50%);
   color: #888;
-  background-color: #fff;
+  background-color: transparent;
   padding: 0 4px;
   pointer-events: none;
   transition: 0.2s ease all;
 }
 
 /* Float label on focus or when input has value */
-.floating-label input:focus + label,
-.floating-label input:valid + label {
+.floating-label-custom input:focus + label,
+.floating-label-custom input:valid + label {
   top: 0;
   font-size: 12px;
-  color: #007bff;
+  color: #888;
 }
 
-/* Completely hide the built-in placeholder (--) at all times */
-input[type="time"]::-webkit-datetime-edit {
+/* Hide default placeholder --:-- in Chrome/Safari */
+input[type="time"]::-webkit-datetime-edit-fields-wrapper {
   color: transparent;
+}
+
+/* Show actual input digits when focused */
+input[type="time"]:focus::-webkit-datetime-edit-fields-wrapper {
+  color: #000;
 }
 
 /* Hide AM/PM for 24-hour look */
@@ -47,18 +59,8 @@ input[type="time"]::-webkit-datetime-edit-ampm-field {
   display: none;
 }
 
-/* Optional: hide all inner controls like separators and fields if needed */
-input[type="time"]::-webkit-datetime-edit-hour-field,
-input[type="time"]::-webkit-datetime-edit-minute-field {
-  color: #000; /* keep actual entered digits visible */
-}
-/* Change the default clock icon color to #888 gray */
+/* Change clock icon color (optional) */
 input[type="time"]::-webkit-calendar-picker-indicator {
   filter: invert(58%) sepia(0%) saturate(0%) hue-rotate(152deg) brightness(91%) contrast(89%);
   opacity: 1;
-}
-/* 🕒 Make hour and minute placeholders gray (#888) */
-input[type="time"]::-webkit-datetime-edit-hour-field,
-input[type="time"]::-webkit-datetime-edit-minute-field {
-  color: #888;
 }
