@@ -31,7 +31,7 @@ export class KonvaComponent implements AfterViewInit {
     this.stage.add(this.layer);
 
     // Example overlay (semi-transparent polygon)
-    const zonePoints = [50,50, 150,50, 150,150, 50,150]; // Example points
+    const zonePoints = [50, 50, 150, 50, 150, 150, 50, 150]; // Example points
     const overlay = new Konva.Line({
       points: zonePoints,
       fill: 'rgba(255, 0, 0, 0.3)',
@@ -40,8 +40,13 @@ export class KonvaComponent implements AfterViewInit {
       closed: true,
       name: 'zone-overlay',
     });
+    // Example transparent polygons
+    const safeZonePoints = [50, 50, 300, 50, 300, 200, 50, 200];
+    const fireZonePoints = [400, 100, 600, 100, 550, 250, 400, 200];
     this.layer.add(overlay);
     this.layer.draw();
+    this.addTransPolygon(safeZonePoints, 'safe');
+    this.addTransPolygon(fireZonePoints, 'fire');
 
     // Stage click
     this.stage.on('click', () => {
@@ -168,4 +173,80 @@ export class KonvaComponent implements AfterViewInit {
     this.layer.add(line);
     this.layer.draw();
   }
+  addTransPolygon(points: number[], type: 'safe' | 'fire') {
+    const fillColor = type === 'safe' ? 'rgba(0, 128, 255, 0.3)' : 'rgba(255, 0, 0, 0.3)';
+    const strokeColor = type === 'safe' ? '#0080FF' : '#FF0000';
+
+    const polygon = new Konva.Line({
+      points: points, // [x1, y1, x2, y2, ..., xn, yn]
+      fill: fillColor,
+      stroke: strokeColor,
+      strokeWidth: 2,
+      closed: true,
+      draggable: false,
+      name: type + '-zone',
+    });
+
+    this.layer.add(polygon);
+    this.layer.draw();
+
+    // Optional: add a label at the centroid
+    const centroid = this.getPolygonCentroid(points);
+    const label = new Konva.Text({
+      text: type === 'safe' ? 'Safe Zone' : 'Fire Zone',
+      x: centroid.x,
+      y: centroid.y,
+      fontSize: 18,
+      fontFamily: 'Arial',
+      fill: strokeColor,
+    });
+    label.offsetX(label.width() / 2);
+    label.offsetY(label.height() / 2);
+
+    this.layer.add(label);
+    this.layer.draw();
+  }
+
+  // Helper function for centroid
+  getPolygonCentroid(points: number[]): { x: number, y: number } {
+    let x = 0, y = 0;
+    const len = points.length / 2;
+    for (let i = 0; i < points.length; i += 2) {
+      x += points[i];
+      y += points[i + 1];
+    }
+    return { x: x / len, y: y / len };
+  }
+  addZone(points: number[], type: 'safe' | 'fire') {
+    const fillColor = type === 'safe' ? 'rgba(0, 255, 0, 0.3)' : 'rgba(255, 0, 0, 0.3)';
+    const strokeColor = type === 'safe' ? 'green' : 'red';
+
+    const polygon = new Konva.Line({
+      points,
+      fill: fillColor,
+      stroke: strokeColor,
+      strokeWidth: 2,
+      closed: true,
+      draggable: true, // ✅ make it draggable
+      name: type + '-zone',
+    });
+
+    // Click event
+    polygon.on('click', (e) => {
+      e.cancelBubble = true;
+      alert(`${type.toUpperCase()} Zone clicked!`);
+    });
+
+    this.layer.add(polygon);
+    this.layer.draw();
+  }
+  addSafeZone() {
+    this.addZone([50, 50, 150, 50, 150, 150, 50, 150], 'safe');
+  }
+
+  addFireZone() {
+    this.addZone([200, 200, 300, 200, 300, 300, 200, 300], 'fire');
+  }
+
+
 }
