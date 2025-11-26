@@ -1,10 +1,72 @@
-<div>
-  <h3>WebSocket Chat</h3>
+<div class="container">
 
-  <div *ngFor="let msg of messages" style="border: 1px solid #ccc; margin: 5px; padding: 5px;">
-  <strong>{{ msg.sender }}:</strong> {{ msg.content }}
+  <!-- 🔵 LOGIN SCREEN -->
+  <div *ngIf="!isLoggedIn && !showRegister" class="login-box">
+    <h2>Login</h2>
+
+    <input [(ngModel)]="username" placeholder="Username" />
+    <input [(ngModel)]="password" type="password" placeholder="Password" />
+
+    <button (click)="login()">Login</button>
+
+    <p *ngIf="error" class="error">{{ error }}</p>
+
+    <!-- 🔵 LINK TO REGISTER -->
+    <p>
+      Don't have an account?
+      <a (click)="toggleRegister()">Register</a> <!-- NEW -->
+    </p>
   </div>
 
-  <input [(ngModel)]="message" placeholder="Type your message" />
-  <button (click)="send()">Send</button>
+  <!-- 🔵 REGISTER SCREEN -->
+  <div *ngIf="!isLoggedIn && showRegister" class="register-box">
+    <h2>Register</h2>
+
+    <input [(ngModel)]="regUsername" placeholder="New Username" />
+    <input [(ngModel)]="regPassword" type="password" placeholder="New Password" />
+
+    <button (click)="register()">Create Account</button>
+
+    <p *ngIf="regError" class="error">{{ regError }}</p>
+
+    <p>
+      Already have an account?
+      <a (click)="toggleRegister()">Login</a> <!-- NEW -->
+    </p>
+  </div>
+
+  <!-- 🔵 USERS LIST SCREEN -->
+  <div *ngIf="isLoggedIn && !selectedUser" class="users-box">
+    <h2>Online Users</h2>
+
+    <div *ngIf="userList.length === 0">
+      No users online.
+    </div>
+
+    <div *ngFor="let user of userList" class="user-item" (click)="openChat(user)">
+      {{ user }}
+    </div>
+  </div>
+
+
+  <!-- 🔵 CHAT WINDOW -->
+  <div *ngIf="isLoggedIn && selectedUser" class="chat-window">
+
+    <div class="chat-header">
+      <button class="back-btn" (click)="closeChat()">← Back</button>
+      <h3>{{ selectedUser }}</h3>
+    </div>
+
+    <div class="messages">
+      <div *ngFor="let msg of getMessagesForSelectedUser()" [class.self]="msg.sender === username">
+        <strong>{{ msg.sender }}:</strong> {{ msg.content }}
+      </div>
+    </div>
+
+    <div class="input-box">
+      <input [(ngModel)]="message" placeholder="Type a message..." (keyup.enter)="send()" />
+      <button (click)="send()">Send</button>
+    </div>
+
+  </div>
 </div>
