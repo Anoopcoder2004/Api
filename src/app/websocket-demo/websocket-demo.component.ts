@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,NgZone } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { WebsocketService } from '../services/websocket.service';
@@ -35,7 +35,8 @@ export class WebsocketDemoComponent {
 
   constructor(
     private wsService: WebsocketService,
-    private http: HttpClient
+    private http: HttpClient,
+    private zone: NgZone,
   ) {}
 
   ngOnInit() {
@@ -121,21 +122,23 @@ export class WebsocketDemoComponent {
 private setupWebsocketSubscriptions() {
 
   // 👥 User list updates
-  this.subscriptions.push(
-    this.wsService.getUserList().subscribe(users => {
-
-      // ✅ Log the received users
-      console.log('Online users from WebSocket:', users);
-
+this.subscriptions.push(
+  this.wsService.getUserList().subscribe(users => {
+    this.zone.run(() => {
       this.userList = users.filter(u => u !== this.username);
-
       this.userList.forEach(u => {
         if (!this.messagesMap[u]) {
           this.messagesMap[u] = [];
         }
       });
-    })
-  );
+    });
+  })
+);
+
+// Only now request the user list
+this.wsService.requestUserList();
+
+
 
   // 💬 Messages updates (unchanged)
   this.subscriptions.push(

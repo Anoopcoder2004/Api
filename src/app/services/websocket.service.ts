@@ -13,11 +13,10 @@ export class WebsocketService {
 connect(username: string) {
   this.username = username;
 
-  this.client = new Client({
-    webSocketFactory: () => new SockJS('http://localhost:8080/ws-chat'),
-    reconnectDelay: 5000,
-    connectHeaders: { username: this.username } // ✅ Pass username to backend
-  });
+this.client = new Client({
+  webSocketFactory: () => new SockJS(`http://localhost:8080/ws?username=${this.username}`),
+  reconnectDelay: 5000
+});
 
   this.client.onConnect = () => {
     // Broadcast messages
