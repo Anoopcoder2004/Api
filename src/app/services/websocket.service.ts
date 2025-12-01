@@ -10,39 +10,36 @@ export class WebsocketService {
   private userList = new Subject<string[]>();
   private username: string = '';
 
-connect(username: string) {
-  this.username = username;
+  connect(username: string) {
+    this.username = username;
 
-this.client = new Client({
-  webSocketFactory: () => new SockJS(`http://localhost:8080/ws?username=${this.username}`),
-  reconnectDelay: 5000
-});
-
-  this.client.onConnect = () => {
-    // Broadcast messages
-    this.client.subscribe('/topic/messages', (msg: IMessage) => {
-      this.messages.next(JSON.parse(msg.body));
+    this.client = new Client({
+      webSocketFactory: () => new SockJS(`http://localhost:8080/ws?username=${this.username}`),
+      reconnectDelay: 5000
     });
 
-    // Private messages
-    this.client.subscribe(`/user/${this.username}/queue/messages`, (msg: IMessage) => {
-      this.messages.next(JSON.parse(msg.body));
-    });
+    this.client.onConnect = () => {
+      // Broadcast
+      this.client.subscribe('/topic/messages', (msg: IMessage) => {
+        this.messages.next(JSON.parse(msg.body));
+      });
 
-    // Connected users list
-    this.client.subscribe('/topic/users', (msg: IMessage) => {
-      const users = JSON.parse(msg.body);
-      this.userList.next(users);
-      console.log('Online users:', users); // ✅ debug log
-    });
+      // 🔥 FIXED — correct private message path
+      this.client.subscribe('/user/queue/messages', (msg: IMessage) => {
+        this.messages.next(JSON.parse(msg.body));
+      });
 
-    // Request initial user list
-    this.client.publish({ destination: '/app/users', body: '' });
-  };
+      // Online users
+      this.client.subscribe('/topic/users', (msg: IMessage) => {
+        this.userList.next(JSON.parse(msg.body));
+      });
 
-  this.client.activate();
-}
+      // request online users
+      this.requestUserList();
+    };
 
+    this.client.activate();
+  }
 
   getMessages() {
     return this.messages.asObservable();
@@ -53,14 +50,20 @@ this.client = new Client({
   }
 
   sendMessage(sender: string, receiver: string | null, content: string) {
+    const message = { sender, receivers: receiver ? [receiver] : [], content };
+
+    // Send message to backend
     this.client.publish({
       destination: '/app/send',
-      body: JSON.stringify({ sender, receivers: receiver ? [receiver] : [], content }),
+      body: JSON.stringify(message),
     });
+
+    // Immediately show in sender's UI
+    this.messages.next(message);
   }
 
   requestUserList() {
-    if (this.client && this.client.connected) {
+    if (this.client?.connected) {
       this.client.publish({ destination: '/app/users', body: '' });
     }
   }
