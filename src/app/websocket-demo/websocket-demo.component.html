@@ -1,72 +1,73 @@
-<div class="container">
-
+<div class="app-container">
+<div class="card">
   <!-- 🔵 LOGIN SCREEN -->
-  <div *ngIf="!isLoggedIn && !showRegister" class="login-box">
-    <h2>Login</h2>
+  <div *ngIf="!isLoggedIn && !showRegister" class="login-card">
+    <h2><span>Welcome</span> Back</h2>
+    <p>Please log in to continue</p>
 
     <input [(ngModel)]="username" placeholder="Username" />
     <input [(ngModel)]="password" type="password" placeholder="Password" />
 
-    <button (click)="login()">Login</button>
+    <button (click)="login()" class="btn-login">Login</button>
 
-    <p *ngIf="error" class="error">{{ error }}</p>
+    <p *ngIf="error" class="error-text">{{ error }}</p>
 
-    <!-- 🔵 LINK TO REGISTER -->
-    <p>
-      Don't have an account?
-      <a (click)="toggleRegister()">Register</a> <!-- NEW -->
+    <p class="signup-text">
+      Don’t have an account?
+      <button class="btn-signup" (click)="toggleRegister()">Sign Up</button>
     </p>
   </div>
 
   <!-- 🔵 REGISTER SCREEN -->
-  <div *ngIf="!isLoggedIn && showRegister" class="register-box">
-    <h2>Register</h2>
+  <div *ngIf="!isLoggedIn && showRegister" class="signup-card">
+    <h2>Create Account</h2>
 
     <input [(ngModel)]="regUsername" placeholder="New Username" />
     <input [(ngModel)]="regPassword" type="password" placeholder="New Password" />
 
-    <button (click)="register()">Create Account</button>
+    <button (click)="register()" class="btn-login">Create Account</button>
 
-    <p *ngIf="regError" class="error">{{ regError }}</p>
+    <p *ngIf="regError" class="error-text">{{ regError }}</p>
 
-    <p>
+    <p class="signup-text">
       Already have an account?
-      <a (click)="toggleRegister()">Login</a> <!-- NEW -->
+      <button class="btn-signup" (click)="toggleRegister()">Login</button>
     </p>
   </div>
 
   <!-- 🔵 USERS LIST SCREEN -->
-  <div *ngIf="isLoggedIn && !selectedUser" class="users-box">
+  <div *ngIf="isLoggedIn && !selectedUser" class="users-page">
     <h2>Online Users</h2>
 
     <div *ngIf="userList.length === 0">
       No users online.
     </div>
 
-    <div *ngFor="let user of userList" class="user-item" (click)="openChat(user)">
+    <div *ngFor="let user of userList" class="user-row" (click)="openChat(user)">
       {{ user }}
     </div>
   </div>
 
-
   <!-- 🔵 CHAT WINDOW -->
-  <div *ngIf="isLoggedIn && selectedUser" class="chat-window">
+  <div *ngIf="isLoggedIn && selectedUser" class="chat-page">
 
-    <div class="chat-header">
-      <button class="back-btn" (click)="closeChat()">← Back</button>
+    <div class="chat-header-row">
+      <button class="btn-back" (click)="closeChat()">← Back</button>
       <h3>{{ selectedUser }}</h3>
     </div>
 
     <div class="messages">
-      <div *ngFor="let msg of getMessagesForSelectedUser()" [class.self]="msg.sender === username">
+      <div *ngFor="let msg of getMessagesForSelectedUser()" 
+           [ngClass]="msg.sender === username ? 'chat-bubble self' : 'chat-bubble'">
         <strong>{{ msg.sender }}:</strong> {{ msg.content }}
       </div>
     </div>
 
-    <div class="input-box">
+    <div class="input-row">
       <input [(ngModel)]="message" placeholder="Type a message..." (keyup.enter)="send()" />
-      <button (click)="send()">Send</button>
+      <button (click)="send()" class="btn-login">Send</button>
     </div>
 
   </div>
+</div>
 </div>

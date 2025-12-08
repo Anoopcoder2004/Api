@@ -18,6 +18,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { TestComponent } from './test/test.component';  
 import { KonvaComponent } from './konva/konva.component';
 import { KarmaJasmineComponent } from './karma-jasmine/karma-jasmine.component';
+import { DebuggerComponent } from './debugger/debugger.component';
 
 export const routes: Routes = [
 
@@ -40,6 +41,7 @@ export const routes: Routes = [
   { path: 'test', component: TestComponent },
   { path: 'konva',component:KonvaComponent},
   { path: 'karma-jasmine', component: KarmaJasmineComponent },
+  { path: 'debugger', component: DebuggerComponent },
 
 
 ];
