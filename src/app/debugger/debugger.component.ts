@@ -8,17 +8,25 @@ import { Component } from '@angular/core';
   styleUrl: './debugger.component.scss'
 })
 export class DebuggerComponent {
-aaa:number;
-bbb:any;
-ccc:any;
+  aaa: number = 0;
 
 
-  constructor(){
-    this.aaa=10;
+
+  ngOnInit() {
+    this.button();
+  }
+
+  button() {
 
 
-    this.aaa=20;
+    this.aaa=1;
 
-    this.aaa=30;
+
+    this.aaa = 2;
+
+
+    this.aaa = 3;
+
+
   }
 }
