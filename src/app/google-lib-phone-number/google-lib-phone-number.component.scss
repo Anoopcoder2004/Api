@@ -1,0 +1,28 @@
+.phone-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 300px;
+
+  input {
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+
+  button {
+    width: 120px;
+    padding: 6px 10px;
+    background-color: #ffc107;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .valid {
+    color: green;
+  }
+
+  .invalid {
+    color: red;
+  }
+}

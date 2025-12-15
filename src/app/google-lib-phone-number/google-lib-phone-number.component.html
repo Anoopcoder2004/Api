@@ -1,0 +1,19 @@
+<div class="phone-input-wrapper">
+  <label for="phone">Enter Phone Number:</label>
+  <input
+    id="phone"
+    type="text"
+    [(ngModel)]="phoneNumber"
+    placeholder="9876543210"
+  />
+  <button (click)="validatePhone()">Validate</button>
+
+  <div *ngIf="isValid === true" class="valid">
+    ✅ Valid phone number! <br />
+    Formatted: {{ formattedNumber }}
+  </div>
+
+  <div *ngIf="isValid === false" class="invalid">
+    ❌ Invalid phone number
+  </div>
+</div>

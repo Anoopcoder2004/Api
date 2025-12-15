@@ -19,6 +19,7 @@ import { TestComponent } from './test/test.component';
 import { KonvaComponent } from './konva/konva.component';
 import { KarmaJasmineComponent } from './karma-jasmine/karma-jasmine.component';
 import { DebuggerComponent } from './debugger/debugger.component';
+import { GoogleLibPhoneNumberComponent } from './google-lib-phone-number/google-lib-phone-number.component';
 
 export const routes: Routes = [
 
@@ -42,6 +43,7 @@ export const routes: Routes = [
   { path: 'konva',component:KonvaComponent},
   { path: 'karma-jasmine', component: KarmaJasmineComponent },
   { path: 'debugger', component: DebuggerComponent },
+  { path: 'googleLibPhoneNumber', component: GoogleLibPhoneNumberComponent },
 
 
 ];
