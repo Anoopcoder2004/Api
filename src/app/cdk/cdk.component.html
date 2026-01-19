@@ -1,0 +1,33 @@
+<div class="page">
+  <h3>CDK Overlay Scroll Reposition Test</h3>
+
+  <!-- Scrollable container -->
+  <div class="table-wrapper" cdkScrollable>
+    <button
+      #searchBtn
+      class="open-btn"
+      (click)="openSearch()"
+    >
+      Open Search Overlay
+    </button>
+
+    <!-- Fake table rows -->
+    <div
+      class="row"
+      *ngFor="let i of rows"
+    >
+      Row {{ i }}
+    </div>
+  </div>
+
+  <!-- Overlay Template -->
+  <ng-template #searchTpl>
+    <div class="search-overlay">
+      <input
+        type="text"
+        placeholder="Search..."
+        autofocus
+      />
+    </div>
+  </ng-template>
+</div>

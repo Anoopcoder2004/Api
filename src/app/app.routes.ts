@@ -22,6 +22,7 @@ import { DebuggerComponent } from './debugger/debugger.component';
 import { GoogleLibPhoneNumberComponent } from './google-lib-phone-number/google-lib-phone-number.component';
 import { WarningMsgComponent } from './warning-msg/warning-msg.component';
 import { PracticeComponent } from './practice/practice.component';
+import { CdkComponent } from './cdk/cdk.component';
 
 export const routes: Routes = [
 
@@ -47,6 +48,7 @@ export const routes: Routes = [
   { path: 'debugger', component: DebuggerComponent },
   { path: 'googleLibPhoneNumber', component: GoogleLibPhoneNumberComponent },
   { path: 'warning-msg', component: WarningMsgComponent },
-  { path: 'practice', component: PracticeComponent }
+  { path: 'practice', component: PracticeComponent },
+  { path: 'cdk',component: CdkComponent}
 
 ];

@@ -1,1 +1,38 @@
-<p>practice works!</p>
+<div class="page">
+  <h3>Table Search</h3>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+   <th class="th-search">
+  Name
+  <button class="search-btn" (click)="toggleSearch()">🔍</button>
+
+  <!-- Search dropdown -->
+  <div class="search-box" [class.active]="showSearch">
+    <ng-select
+      [items]="options"
+      bindLabel="name"
+      bindValue="id"
+      [multiple]="true"
+      placeholder="Select options"
+      [(ngModel)]="selectedOptions"
+      [searchable]="true"
+      [closeOnSelect]="false"
+      [clearable]="true">
+    </ng-select>
+  </div>
+</th>
+
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let row of rows">
+        <td>{{ row.id }}</td>
+        <td>{{ row.name }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
