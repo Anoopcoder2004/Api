@@ -1,27 +1,37 @@
-<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-  <div>
-    <label>Name:</label>
-    <input type="text" formControlName="name" />
-    <div *ngIf="userForm.get('name')?.touched && userForm.get('name')?.invalid">
-      Name is required and must be at least 3 characters.
-    </div>
-  </div>
+<div class="row">
+  <div class="col-md-4">
+    <form [formGroup]="userForm">
 
-  <div>
-    <label>Email:</label>
-    <input type="email" formControlName="email" />
-    <div *ngIf="userForm.get('email')?.touched && userForm.get('email')?.invalid">
-      Enter a valid email.
-    </div>
-  </div>
+      <!-- Name -->
+      <input type="text" formControlName="name" placeholder="Enter name" />
 
-  <div>
-    <label>Age:</label>
-    <input type="number" formControlName="age" />
-    <div *ngIf="userForm.get('age')?.touched && userForm.get('age')?.invalid">
-      Age must be at least 18.
-    </div>
-  </div>
+      <!-- Email -->
+      <input type="email" formControlName="email" placeholder="Enter email" />
 
-  <button type="submit">Submit</button>
-</form>
+      <!-- Qualifications (multi-select) -->
+      <ng-select #qualSelect class="custom-ng-select" [items]="qualificationsList" bindLabel="label" [multiple]="true"
+        [closeOnSelect]="false" [searchable]="true" formControlName="qualifications"
+        placeholder="Select qualifications">
+
+        <ng-template ng-label-tmp let-items="items">
+          <span class="single-line">
+            {{ getDisplayTextAccurate(items) }}
+          </span>
+        </ng-template>
+
+      </ng-select>
+
+      <!-- Skills (multi-select) -->
+      <ng-select [items]="skillsList" bindLabel="label" [multiple]="true" formControlName="skills"
+        placeholder="Select skills">
+      </ng-select>
+
+      <!-- Experience -->
+      <ng-select [items]="experienceList" bindLabel="label" formControlName="experience"
+        placeholder="Select experience">
+      </ng-select>
+
+    </form>
+  </div>
+  <div class="col-md-8"></div>
+</div>
