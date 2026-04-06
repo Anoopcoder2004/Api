@@ -1,11 +1,12 @@
-import { Component,OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-import {MatStepperModule} from '@angular/material/stepper';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { MatStepperModule } from '@angular/material/stepper';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { C2cdataService } from '../services/c2cdata.service';
 
 
 
@@ -17,18 +18,23 @@ import { MatButtonModule } from '@angular/material/button';
     RouterModule,
     MatStepperModule,
     ReactiveFormsModule,
-    MatFormFieldModule, 
+    MatFormFieldModule,
     MatInputModule,
-    MatButtonModule  
+    MatButtonModule
   ],
   templateUrl: './stepper.component.html',
   styleUrl: './stepper.component.css'
 })
-export class StepperComponent implements OnInit{
+export class StepperComponent implements OnInit {
   isLinear = false;
-  firstFormGroup!: FormGroup ;
-  secondFormGroup!: FormGroup ;
-    constructor(private _formBuilder: FormBuilder) {}
+  firstFormGroup!: FormGroup;
+  secondFormGroup!: FormGroup;
+  dataFromAnotherComponent: string = '';
+  constructor(
+    private _formBuilder: FormBuilder,
+    private dataService: C2cdataService
+
+  ) { }
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
@@ -36,6 +42,9 @@ export class StepperComponent implements OnInit{
     });
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
+    });
+    this.dataService.currentMessage$.subscribe(data => {
+        this.dataFromAnotherComponent = data;
     });
   }
 }
