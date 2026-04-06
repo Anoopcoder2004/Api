@@ -10,9 +10,8 @@ import { Component,EventEmitter,Input,Output } from '@angular/core';
 export class UserTableComponent {
 
   @Output() notify = new EventEmitter<string>();
-
+  @Input() messageFromParent : string = '';
   sendData(value : string){
     this.notify.emit(value);
   }
-
 }

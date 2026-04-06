@@ -3,4 +3,13 @@
 {{inputFromChild}}
 <br>
 <hr>
-<app-user-table (notify) = "handleData($event)"></app-user-table>
+
+<input #parentInput type = "text" placeholder="enter value for child">
+<button type="submit" (click)="sendToChild(parentInput.value)">Submit</button>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<app-user-table (notify) = "handleData($event)" [messageFromParent]="parentMessage" ></app-user-table>

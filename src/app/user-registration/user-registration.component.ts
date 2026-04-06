@@ -17,10 +17,14 @@ import { UserTableComponent } from './user-table/user-table.component';
 export class UserRegistrationComponent {
 
   inputFromChild: string = '';
+  parentMessage : string = '';
 
 
   handleData(data: string) {
     this.inputFromChild = data;
 
+  }
+  sendToChild(value:string){
+    this.parentMessage = value;
   }
 }
