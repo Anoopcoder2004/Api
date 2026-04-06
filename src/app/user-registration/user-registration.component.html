@@ -1,37 +1,6 @@
-<div class="row">
-  <div class="col-md-4">
-    <form [formGroup]="userForm">
+<h2> childs value</h2>
 
-      <!-- Name -->
-      <input type="text" formControlName="name" placeholder="Enter name" />
-
-      <!-- Email -->
-      <input type="email" formControlName="email" placeholder="Enter email" />
-
-      <!-- Qualifications (multi-select) -->
-      <ng-select #qualSelect class="custom-ng-select" [items]="qualificationsList" bindLabel="label" [multiple]="true"
-        [closeOnSelect]="false" [searchable]="true" formControlName="qualifications"
-        placeholder="Select qualifications">
-
-        <ng-template ng-label-tmp let-items="items">
-          <span class="single-line">
-            {{ getDisplayTextAccurate(items) }}
-          </span>
-        </ng-template>
-
-      </ng-select>
-
-      <!-- Skills (multi-select) -->
-      <ng-select [items]="skillsList" bindLabel="label" [multiple]="true" formControlName="skills"
-        placeholder="Select skills">
-      </ng-select>
-
-      <!-- Experience -->
-      <ng-select [items]="experienceList" bindLabel="label" formControlName="experience"
-        placeholder="Select experience">
-      </ng-select>
-
-    </form>
-  </div>
-  <div class="col-md-8"></div>
-</div>
+{{inputFromChild}}
+<br>
+<hr>
+<app-user-table (notify) = "handleData($event)"></app-user-table>
