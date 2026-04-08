@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgSelectModule } from '@ng-select/ng-select'
 import { FormsModule } from '@angular/forms';
+import { ChildComponent } from './child/child.component';
 
 @Component({
   selector: 'app-practice',
@@ -9,7 +10,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     NgSelectModule,
-    FormsModule
+    FormsModule,
+    ChildComponent
   ],
   templateUrl: './practice.component.html',
   styleUrl: './practice.component.scss',
@@ -30,6 +32,8 @@ export class PracticeComponent {
     id: i + 1,
     name: `User ${i + 1}`,
   }));
+  showDeleteModal = false;
+  rowToDelete = '';
 
   toggleSearch() {
     this.showSearch = !this.showSearch;
@@ -38,4 +42,23 @@ export class PracticeComponent {
   closeSearch() {
     this.showSearch = false;
   }
+
+// called when child emits delete event
+onDeleteRequest(name: string) {
+  this.rowToDelete = name;
+  this.showDeleteModal = true;
+}
+
+// confirm delete
+confirmDelete(child: any) {
+  child.deleteRow(this.rowToDelete);
+  this.showDeleteModal = false;
+  this.rowToDelete = '';
+}
+
+// cancel delete
+cancelDelete() {
+  this.showDeleteModal = false;
+  this.rowToDelete = '';
+}
 }

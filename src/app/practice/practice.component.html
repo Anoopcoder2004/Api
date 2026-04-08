@@ -36,3 +36,30 @@
     </tbody>
   </table>
 </div>
+<app-child 
+  #childComp 
+  (deleteRequest)="onDeleteRequest($event)">
+</app-child>
+
+<div class="modal-backdrop" *ngIf="showDeleteModal">
+  <div class="modal-dialog">
+    <div class="modal-content p-3">
+      <h5>Confirm Delete</h5>
+
+      <p>
+        Are you sure you want to delete 
+        <strong>{{ rowToDelete }}</strong>?
+      </p>
+
+      <div class="d-flex justify-content-end gap-2">
+        <button class="btn btn-secondary" (click)="cancelDelete()">
+          Cancel
+        </button>
+
+        <button class="btn btn-danger" (click)="confirmDelete(childComp)">
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
