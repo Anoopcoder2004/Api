@@ -1,15 +1,77 @@
-<div class="stepper">
-  <div class="step completed">1</div>
-  <div class="connector">
-    <div class="progress" style="width: 100%;"></div>
+```html
+<form [formGroup]="wizardForm" class="wizard-container">
+
+  <!-- 🔷 Tabs Header -->
+  <div class="tabs">
+    <button type="button" (click)="setTab(0)" [class.active]="activeTab === 0">Details</button>
+    <button type="button" (click)="setTab(1)" [class.active]="activeTab === 1">Existing User</button>
+    <button type="button" (click)="setTab(2)" [class.active]="activeTab === 2">Credentials</button>
+    <button type="button" (click)="setTab(3)" [class.active]="activeTab === 3">Session</button>
+    <button type="button" (click)="setTab(4)" [class.active]="activeTab === 4">Identity Provider</button>
   </div>
-  <div class="step completed">2</div>
-  <div class="connector">
-    <div class="progress" style="width: 50%;"></div> <!-- half-filled -->
+
+  <!-- 🔶 Tab Body -->
+
+  <!-- 🟢 Details Form -->
+  <div *ngIf="activeTab === 0" formGroupName="detailsForm" class="tab-body">
+    <h3>Details</h3>
+
+    <input type="text" placeholder="First Name" formControlName="firstName" />
+    <input type="text" placeholder="Last Name" formControlName="lastName" />
   </div>
-  <div class="step">3</div>
-</div>
-<hr>
-<h1>{{dataFromAnotherComponent}}</h1>
-<br>
-<hr>
+
+
+  <!-- 🟡 Existing User Form -->
+  <div *ngIf="activeTab === 1" formGroupName="existingUserForm" class="tab-body">
+    <h3>Existing User</h3>
+
+    <input type="text" placeholder="User ID" formControlName="userId" />
+    <input type="email" placeholder="Email" formControlName="email" />
+  </div>
+
+
+  <!-- 🔵 Credentials Form -->
+  <div *ngIf="activeTab === 2" formGroupName="credentialsForm" class="tab-body">
+    <h3>Credentials</h3>
+
+    <input type="password" placeholder="Password" formControlName="password" />
+    <input type="password" placeholder="Confirm Password" formControlName="confirmPassword" />
+  </div>
+
+
+  <!-- 🟣 Session Form -->
+  <div *ngIf="activeTab === 3" formGroupName="sessionForm" class="tab-body">
+    <h3>Session Settings</h3>
+
+    <input type="number" placeholder="Session Timeout (minutes)" formControlName="sessionTimeout" />
+  </div>
+
+
+  <!-- 🟠 Identity Provider Form -->
+  <div *ngIf="activeTab === 4" formGroupName="identityProviderForm" class="tab-body">
+    <h3>Identity Provider</h3>
+
+    <input type="text" placeholder="Provider Name" formControlName="providerName" />
+    <input type="text" placeholder="Client ID" formControlName="clientId" />
+  </div>
+
+
+  <!-- 🔁 Navigation Buttons -->
+  <div class="nav-buttons">
+    <button type="button" (click)="prevTab()" [disabled]="activeTab === 0">
+      Back
+    </button>
+
+    <button type="button" (click)="nextTab()" [disabled]="activeTab === 4">
+      Next
+    </button>
+  </div>
+
+
+  <!-- ✅ Submit -->
+  <div class="submit-section" *ngIf="activeTab === 4">
+    <button type="button" (click)="submit()">Submit</button>
+  </div>
+
+</form>
+```

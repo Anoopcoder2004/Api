@@ -4,6 +4,8 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
 import { appConfig } from './app/app.config';
+import { provideStore } from '@ngrx/store';
+import { counterReducer } from './app/store/counter.reducer';
 
 //  ADDED: Import for scroll restoration
 import { provideRouter, withInMemoryScrolling } from '@angular/router';
@@ -13,6 +15,9 @@ bootstrapApplication(AppComponent, {
   ...appConfig,
   providers: [
     ...(appConfig.providers || []),
+    provideStore({
+      counter:counterReducer
+    }),
 
     //  ADDED: Router with automatic scroll-to-top
     provideRouter(

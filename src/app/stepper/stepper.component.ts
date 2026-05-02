@@ -7,9 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { C2cdataService } from '../services/c2cdata.service';
-
-
-
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-stepper',
@@ -20,31 +18,62 @@ import { C2cdataService } from '../services/c2cdata.service';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
+    CommonModule,
     MatButtonModule
   ],
   templateUrl: './stepper.component.html',
   styleUrl: './stepper.component.css'
 })
-export class StepperComponent implements OnInit {
-  isLinear = false;
-  firstFormGroup!: FormGroup;
-  secondFormGroup!: FormGroup;
-  dataFromAnotherComponent: string = '';
+export class StepperComponent {
+
+  wizardForm!: FormGroup;
+  activeTab = 0;
+
   constructor(
-    private _formBuilder: FormBuilder,
+    private fb: FormBuilder,
     private dataService: C2cdataService
 
   ) { }
-
   ngOnInit() {
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
-    });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
-    });
-    this.dataService.currentMessage$.subscribe(data => {
-        this.dataFromAnotherComponent = data;
+    this.wizardForm = this.fb.group({
+      detailsForm: this.fb.group({
+        firstName: ['', Validators.required],
+        lastName: [''],
+      }),
+
+      existingUserForm: this.fb.group({
+        userId: [''],
+        email: [''],
+      }),
+
+      credentialsForm: this.fb.group({
+        password: [''],
+        confirmPassword: [''],
+      }),
+
+      sessionForm: this.fb.group({
+        sessionTimeout: [30],
+      }),
+
+      identityProviderForm: this.fb.group({
+        providerName: [''],
+        clientId: [''],
+      })
     });
   }
+
+  setTab(index: number) {
+    this.activeTab = index;
+  }
+
+  nextTab() {
+    this.activeTab++;
+  }
+
+  prevTab() {
+    this.activeTab--;
+  }
+  submit() {
+  console.log('FORM VALUE:', this.wizardForm.value);
+}
 }
